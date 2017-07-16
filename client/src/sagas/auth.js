@@ -2,7 +2,6 @@ import { takeLatest } from 'redux-saga';
 import { put, call, select } from 'redux-saga/effects';
 import { hashHistory } from 'react-router';
 import { push } from 'react-router-redux';
-
 import { LOGIN } from '../constants/auth';
 import {
   loginSuccess,
@@ -14,7 +13,7 @@ const getForm = (state, form) => {
 }
 
 const sendCredentials = (route, credentials) => {
-  return fetch(`http://localhost:5000/authenticate/${route}`, {
+  return fetch(`/authenticate/${route}`, {
     headers: new Headers({
       'Content-Type': 'application/json'
     }),

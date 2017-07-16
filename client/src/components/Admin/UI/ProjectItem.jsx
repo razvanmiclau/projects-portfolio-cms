@@ -13,7 +13,7 @@ export default class Project extends Component {
   }
 
   render() {
-    const { _id, index, project_name, project_desc, project_pic, project_stack, deleteProject } = this.props;
+    const { _id, index, project_name, project_desc, project_pic, project_stack, project_link, deleteProject } = this.props;
     return(
       <section className="spotlight style1 orient-right image-position-right onload-image-fade-in onload-content-fade-right">
         <div className="content">
@@ -33,6 +33,9 @@ export default class Project extends Component {
           <ul className="actions small">
             <li>
               <button className="button special small" onClick={() => deleteProject(_id)}>Remove Project</button>
+            </li>
+            <li>
+              <a href={project_link} className="button special small">View Project</a>
             </li>
           </ul>
         </div>

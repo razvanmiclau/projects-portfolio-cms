@@ -37,6 +37,15 @@ class Form extends PureComponent {
         </div>
 
         <div className="field">
+          <label htmlFor="project-link">Project Link</label>
+          <Field
+            name="project_link"
+            type="text"
+            component="input"
+          placeholder="Project Link" />
+        </div>
+
+        <div className="field">
           <label htmlFor="project-stack">Stack</label>
           <Field
             name="project_stack"

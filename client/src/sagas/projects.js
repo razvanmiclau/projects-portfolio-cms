@@ -36,7 +36,7 @@ const projectForm = (state) => {
 }
 
 const fetchProjects = () => {
-  return fetch('http://localhost:5000/admin/projects', {
+  return fetch(`/admin/projects`, {
     headers: new Headers({
       'Content-Type': 'application/json'
     })
@@ -45,7 +45,7 @@ const fetchProjects = () => {
 }
 
 const deleteProjectOnServer = (id) => {
-  return fetch(`http://localhost:5000/admin/projects/${id}`, {
+  return fetch(`/admin/projects/${id}`, {
     headers: new Headers({
       'Content-Type': 'application/json'
     }),
@@ -55,7 +55,7 @@ const deleteProjectOnServer = (id) => {
 }
 
 const addProjectToServer = (project) => {
-  return fetch('http://localhost:5000/admin/projects', {
+  return fetch(`/admin/projects`, {
     headers: new Headers({
       'Content-Type': 'application/json',
       'x-access-token': localStorage.getItem('token')

@@ -7,6 +7,7 @@ var projectSchema = new mongoose.Schema(
     project_desc: String,
     project_pic: String,
     project_stack: [String],
+    project_link: String,
     project_date: {
       type: Date,
       default: Date.now

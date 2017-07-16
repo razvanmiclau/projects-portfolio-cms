@@ -1,7 +1,6 @@
 import { takeLatest, delay } from 'redux-saga';
 import { put, call, select } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
-
 import {
   GET_SECTIONS,
   DELETE_SECTION,
@@ -38,7 +37,7 @@ const sectionForm = (state) => {
 }
 
 const fetchSections = () => {
-  return fetch(`http://localhost:5000/admin/sections/`, {
+  return fetch(`/admin/sections/`, {
     headers: new Headers({
       'Content-Type': 'application/json'
     })
@@ -47,7 +46,7 @@ const fetchSections = () => {
 }
 
 const deleteSectionOnServer = (id) => {
-  return fetch(`http://localhost:5000/admin/sections/${id}`, {
+  return fetch(`/admin/sections/${id}`, {
     headers: new Headers({
       'Content-Type': 'application/json',
       'x-access-token': localStorage.getItem('token')
@@ -58,7 +57,7 @@ const deleteSectionOnServer = (id) => {
 }
 
 const addSectionToServer = (section) => {
-  return fetch('http://localhost:5000/admin/sections', {
+  return fetch(`/admin/sections`, {
     headers: new Headers({
       'Content-Type': 'application/json',
       'x-access-token': localStorage.getItem('token')
