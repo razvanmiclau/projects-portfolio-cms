@@ -33602,7 +33602,7 @@ var Project = function (_PureComponent) {
           _react2.default.createElement(
             'p',
             null,
-            project_desc.substring(0, 20)
+            project_stack
           ),
           _react2.default.createElement(
             'ul',
