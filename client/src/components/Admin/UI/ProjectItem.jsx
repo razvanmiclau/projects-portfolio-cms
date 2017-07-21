@@ -18,7 +18,7 @@ export default class Project extends Component {
       <section className="spotlight style1 orient-right image-position-right onload-image-fade-in onload-content-fade-right">
         <div className="content">
           <h3>{project_name}</h3>
-          <p>{project_desc}</p>
+          <p className="major">{project_desc}</p>
           <div className="stack">
             <h4>Stack</h4>
             <ul className="list-inline">

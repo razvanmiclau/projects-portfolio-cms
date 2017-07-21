@@ -14,7 +14,7 @@ export default class ProjectModal extends PureComponent {
                 <h3>{project_name}</h3>
                 <a href={project_link} className="button special small">View Project</a>
               </header>
-              <p className="align-left">{project_desc}</p> <hr/>
+              <p className="align-left major">{project_desc}</p> <hr/>
               <div className="stack-list list-inline">
                 <h3>Stack Used</h3>
                 {project_stack}

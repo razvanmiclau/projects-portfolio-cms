@@ -13,7 +13,7 @@ export default class Project extends PureComponent {
         </a>
         <div className="caption">
           <h3>{project_name}</h3>
-          <p>{project_desc}</p>
+          <p>{project_desc.substring(0,20)}</p>
           <ul className="actions">
             <li><span className="button small">Details</span></li>
           </ul>
