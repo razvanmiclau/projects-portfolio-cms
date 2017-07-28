@@ -2,6 +2,8 @@ import Immutable from 'immutable';
 import {
   GET_SECTIONS_SUCCESS,
   GET_SECTIONS_FAIL,
+  GET_SECTION_SUCCESS,
+  GET_SECTION_FAIL,
   DELETE_SECTION_SUCCESS,
   DELETE_SECTION_FAIL,
   ADD_SECTION_SUCCESS,
@@ -22,6 +24,10 @@ export default (state = initialState, action) => {
       return state.merge({ list: action.sections });
     }
 
+    case GET_SECTION_SUCCESS: {
+      return state.merge({ selectedSection: action.section });
+    }
+
     case UPLOAD_IMAGE_SUCCESS: {
       return state.merge({ url: action.url });
     }
@@ -30,6 +36,7 @@ export default (state = initialState, action) => {
     case ADD_SECTION_FAIL:
     case UPLOAD_IMAGE_FAIL:
     case DELETE_SECTION_FAIL:
+    case GET_SECTION_FAIL:
     case GET_SECTIONS_FAIL: {
       return state.clear();
     }

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router';
 import { Field, reduxForm } from 'redux-form/immutable';
-import { Editor, EditorState, RichUtils } from 'draft-js';
 
 class FormSection extends PureComponent {
 

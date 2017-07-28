@@ -12,6 +12,7 @@ class SectionsContainer extends Component {
   constructor(props) {
     super(props);
     this.deleteSection = this.deleteSection.bind(this);
+    this.editSection = this.editSection.bind(this);
   }
 
   componentDidMount() {
@@ -26,21 +27,30 @@ class SectionsContainer extends Component {
     this.props.sectionActions.deleteSection(id);
   }
 
+  editSection(id) {
+    this.props.sectionActions.getSection(id);
+  }
+
   render() {
-    const { sections } = this.props;
-    
+    const { sections, selectedSection } = this.props;
+
     return(
-      <div className="container">
-        <div className="jumbotron">
-          <h1>New Section</h1>
-          <Link to='/admin/sections/add' className="button">Add Section</Link>
-          {this.props.children}
-        </div>
+      <div id="wrapper" className="divided">
+        <section className="banner onload-image-fade-in onload-content-fade-right style2
+        fullscreen orient-center content-align-center image-position-center">
+          <div className="content">
+            <h1>Sections</h1>
+            <p className="major">
+              <Link to='/admin/sections/add' className="button">Add Section</Link>
+            </p>
+            {this.props.children}
+          </div>
+          <div className="image">
+            <img src="https://source.unsplash.com/category/nature/1600x900" />
+          </div>
+        </section>
 
         <div>
-          <header>
-            <h2>Sections</h2> <hr/>
-          </header>
           {
             sections.map(section => {
 
@@ -59,6 +69,7 @@ class SectionsContainer extends Component {
                 <SectionAdmin {...section}
                   key={section._id}
                   classnames={classnames}
+                  editSection={this.editSection}
                   deleteSection={this.deleteSection}/>
               )
             })
@@ -83,6 +94,7 @@ class SectionsContainer extends Component {
 function mapStateToProps (state) {
   return {
     sections: toJS(state.getIn(['sections', 'list'], Immutable.List())),
+    selectedSection: toJS(state.getIn(['selectedSection'], Immutable.List()))
   }
 };
 

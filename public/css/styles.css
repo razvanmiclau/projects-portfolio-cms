@@ -8448,3 +8448,19 @@
 .modal-body .stack-list > h3 {
 	margin:0;
 }
+
+/* CUSTOM */
+.navbar-overlay {
+	position: absolute;
+	width: 100%;
+	z-index: 99999;
+	background: rgba(255,255,255,0.1);
+	border-radius: 0px;
+	border:none;
+}
+
+.navbar-brand {
+	font-size: 1.1rem;
+	color: floralwhite;
+	text-decoration: none;
+}

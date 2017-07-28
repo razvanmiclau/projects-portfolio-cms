@@ -8,7 +8,7 @@ import Project from './models/project';
 import Section from './models/section';
 // Routes
 import { getProjects, getProject, postProject, deleteProject } from './client/routes/project';
-import { getSections, getSection, addSection, deleteSection } from './client/routes/section';
+import { getSections, getSection, addSection, deleteSection, updateSection } from './client/routes/section';
 // Authentication
 import { signup, login, checkAuth } from './client/routes/user';
 
@@ -62,6 +62,7 @@ app.route('/admin/sections')
    .get(getSections);
 app.route('/admin/sections/:id')
    .get(getSection)
+   .put(checkAuth, updateSection)
    .delete(checkAuth, deleteSection);
 
 app.post('/authenticate/login', login);

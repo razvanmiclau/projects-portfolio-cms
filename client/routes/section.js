@@ -1,6 +1,6 @@
 import Section from '../../models/section';
 
-// Get all most recent projects
+// Get all most recent Sections
 const getSections = (req, res) => {
   Section.find(null, null,
     (err, sections) => {
@@ -12,10 +12,10 @@ const getSections = (req, res) => {
   );
 };
 
-// Get a single project by ID
+// Get a single Section by ID
 const getSection = (req, res) => {
   const { id } = req.params;
-  // Query the db for selected project.
+  // Query the db for selected Section.
   Section.findById(id, (err, section) => {
     if (err) {
       res.send(err);
@@ -24,7 +24,7 @@ const getSection = (req, res) => {
   });
 };
 
-// Get the body data and create a new Project
+// Get the body data and create a new Section
 const addSection = (req, res) => {
   let section = Object.assign(new Section(), req.body);
   section.save(err => {
@@ -35,7 +35,7 @@ const addSection = (req, res) => {
   });
 };
 
-// Delete a Project
+// Delete a Section
 const deleteSection = (req, res) => {
   Section.remove({_id: req.params.id }, err => {
     if (err) {
@@ -44,5 +44,17 @@ const deleteSection = (req, res) => {
     res.json({ message: 'Section successfully removed'})
   });
 };
+
+// Update a Section
+const updateSection = (req, res) => {
+  const { id } = req.params;
+  let updatedSection = Object.assign(new Section(), req.body);
+  Section.findOneAndUpdate(id, updatedSection, (err, updatedData) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json(updatedData);
+  });
+}
 
 export { getSections, getSection, addSection, deleteSection };

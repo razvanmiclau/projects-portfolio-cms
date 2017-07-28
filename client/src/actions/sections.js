@@ -2,6 +2,9 @@ import {
 GET_SECTIONS,
 GET_SECTIONS_SUCCESS,
 GET_SECTIONS_FAIL,
+GET_SECTION,
+GET_SECTION_SUCCESS,
+GET_SECTION_FAIL,
 DELETE_SECTION,
 DELETE_SECTION_SUCCESS,
 DELETE_SECTION_FAIL,
@@ -16,6 +19,26 @@ UPLOAD_IMAGE_FAIL,
 const getSections = () => {
   return {
     type: GET_SECTIONS
+  }
+}
+
+const getSection = (id) => {
+  return {
+    type: GET_SECTION,
+    id
+  }
+}
+
+const getSectionSuccess = (section) => {
+  return {
+    type: GET_SECTION_SUCCESS,
+    section
+  }
+}
+
+const getSectionFail = () => {
+  return {
+    type: GET_SECTION_FAIL
   }
 }
 
@@ -93,6 +116,9 @@ export {
   getSections,
   getSectionsSuccess,
   getSectionsFail,
+  getSection,
+  getSectionSuccess,
+  getSectionFail,
   deleteSection,
   deleteSectionSuccess,
   deleteSectionFail,

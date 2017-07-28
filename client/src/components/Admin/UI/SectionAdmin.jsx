@@ -11,6 +11,7 @@ export default class SectionAdmin extends PureComponent {
             {section_desc}
           </p>
           <button onClick={() => deleteSection(_id)}>Delete</button>
+          <button onClick={() => editSection(_id)}>Edit</button>
         </div>
         <div className="image">
           <img src={section_pic} />

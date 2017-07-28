@@ -32,7 +32,7 @@ class AddSectionContainer extends Component {
 
     return(
       <div>
-        <h1>AddSection Container</h1>
+        <h1>Content & Layout</h1>
         <FormSection handleSubmit={this.submit} image={image} uploadImage={this.uploadImage} />
       </div>
     )

@@ -30,13 +30,11 @@ class ProjectsContainer extends Component {
   render() {
     const { projects } = this.props;
     return(
-      <div className="test">
-        <section className="banner style1
-          orient-left content-align-center
-          image-position-right fullscreen
-          onload-image-fade-in onload-content-fade-right">
+      <div id="wrapper" className="divided">
+        <section className="banner onload-image-fade-in onload-content-fade-right style2
+        fullscreen orient-center content-align-center image-position-center">
           <div className="content">
-            <h1>Projects.</h1>
+            <h1>Projects</h1>
             <p className="major">
               Add / Edit / Search Projects.
             </p>
@@ -44,14 +42,11 @@ class ProjectsContainer extends Component {
               <li><Link to='/admin/projects/add' className="button">New Project</Link></li>
               <li><a href="#second" className="button big wide smooth-scroll-middle">Projects</a></li>
             </ul>
+            {this.props.children}
           </div>
           <div className="image">
             <img src="https://source.unsplash.com/category/nature/1600x900" />
           </div>
-        </section>
-
-        <section id="first" className="wrapper style1">
-          {this.props.children}
         </section>
 
         <div id="second">
@@ -60,6 +55,17 @@ class ProjectsContainer extends Component {
             deleteProject={this.deleteProject}
           />
         </div>
+
+        <footer className="wrapper style1 align-center">
+          <div className="inner">
+            <ul className="icons">
+              <li><a href="#" className="icon style2 fa fa-facebook"><span className="label">Facebook</span></a></li>
+              <li><a href="#" className="icon style2 fa fa-linkedin"><span className="label">Linkedin</span></a></li>
+              <li><a href="#" className="icon style2 fa fa-envelope"><span className="label">Email</span></a></li>
+            </ul>
+            <p>&copy; Razvan Miclau. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+          </div>
+        </footer>
 
       </div>
     )
