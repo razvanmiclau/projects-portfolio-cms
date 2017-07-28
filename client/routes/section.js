@@ -57,4 +57,4 @@ const updateSection = (req, res) => {
   });
 }
 
-export { getSections, getSection, addSection, deleteSection };
+export { getSections, getSection, addSection, deleteSection, updateSection };
