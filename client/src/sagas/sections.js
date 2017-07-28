@@ -123,9 +123,10 @@ function* getSections () {
   }
 }
 
-function* getSection () {
+function* getSection (action) {
+  const { id } = action;
   try {
-    const section = yield call(fetchSection);
+    const section = yield call(fetchSection, id);
     yield put(getSectionSuccess(section));
   } catch (err) {
     yield put(getSectionFail());

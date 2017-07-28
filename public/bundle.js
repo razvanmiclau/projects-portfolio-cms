@@ -36698,7 +36698,8 @@ var SectionAdmin = function (_PureComponent) {
           section_type = _props.section_type,
           section_desc = _props.section_desc,
           section_pic = _props.section_pic,
-          deleteSection = _props.deleteSection;
+          deleteSection = _props.deleteSection,
+          editSection = _props.editSection;
 
       return _react2.default.createElement(
         "section",
@@ -39101,37 +39102,38 @@ function getSections() {
   }, _marked[0], this, [[0, 8]]);
 }
 
-function getSection() {
-  var section;
+function getSection(action) {
+  var id, section;
   return regeneratorRuntime.wrap(function getSection$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          _context2.prev = 0;
-          _context2.next = 3;
-          return (0, _effects.call)(fetchSection);
+          id = action.id;
+          _context2.prev = 1;
+          _context2.next = 4;
+          return (0, _effects.call)(fetchSection, id);
 
-        case 3:
+        case 4:
           section = _context2.sent;
-          _context2.next = 6;
+          _context2.next = 7;
           return (0, _effects.put)((0, _sections2.getSectionSuccess)(section));
 
-        case 6:
-          _context2.next = 12;
+        case 7:
+          _context2.next = 13;
           break;
 
-        case 8:
-          _context2.prev = 8;
-          _context2.t0 = _context2['catch'](0);
-          _context2.next = 12;
+        case 9:
+          _context2.prev = 9;
+          _context2.t0 = _context2['catch'](1);
+          _context2.next = 13;
           return (0, _effects.put)((0, _sections2.getSectionFail)());
 
-        case 12:
+        case 13:
         case 'end':
           return _context2.stop();
       }
     }
-  }, _marked[1], this, [[0, 8]]);
+  }, _marked[1], this, [[1, 9]]);
 }
 
 function deleteSection(action) {
