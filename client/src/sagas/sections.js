@@ -3,6 +3,7 @@ import { put, call, select } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import {
   GET_SECTIONS,
+  GET_SECTION,
   DELETE_SECTION,
   ADD_SECTION,
   UPLOAD_IMAGE
@@ -11,6 +12,8 @@ import {
 import {
   getSectionsSuccess,
   getSectionsFail,
+  getSectionSuccess,
+  getSectionFail,
   deleteSectionSuccess,
   deleteSectionFail,
   addSectionSuccess,
@@ -28,6 +31,10 @@ const selectedSections = (state) => {
   return state.getIn(['sections', 'list']).toJS();
 }
 
+const selectedSection = (state) => {
+  return state.getIn(['selectedSection']).toJS();
+}
+
 const selectedImage = (state) => {
   return state.getIn(['sections', 'url'], '');
 }
@@ -41,6 +48,16 @@ const fetchSections = () => {
     headers: new Headers({
       'Content-Type': 'application/json'
     })
+  })
+  .then(res => res.json())
+}
+
+const fetchSection = (id) => {
+  return fetch(`/admin/sections/${id}`, {
+    headers: new Headers({
+      'Content-Type': 'application/json',
+    }),
+    method: 'GET',
   })
   .then(res => res.json())
 }
@@ -106,6 +123,15 @@ function* getSections () {
   }
 }
 
+function* getSection () {
+  try {
+    const section = yield call(fetchSection);
+    yield put(getSectionSuccess(section));
+  } catch (err) {
+    yield put(getSectionFail());
+  }
+}
+
 function* deleteSection (action) {
   const { id } = action;
   const sections = yield select(selectedSections);
@@ -148,6 +174,10 @@ function* watchGetSections () {
   yield takeLatest(GET_SECTIONS, getSections);
 }
 
+function* watchGetSection () {
+  yield takeLatest(GET_SECTION, getSection);
+}
+
 function* watchDeleteSection () {
   yield takeLatest(DELETE_SECTION, deleteSection);
 }
@@ -162,6 +192,7 @@ function* watchUploadImageSection () {
 
 export {
   watchGetSections,
+  watchGetSection,
   watchDeleteSection,
   watchAddSection,
   watchUploadImageSection
