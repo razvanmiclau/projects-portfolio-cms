@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 
 export default class SectionAdmin extends PureComponent {
   render() {
-    const { classnames, _id, section_title, section_type, section_desc, section_pic, deleteSection } = this.props;
+    const { classnames, _id, section_title, section_type, section_desc, section_pic, deleteSection, editSection } = this.props;
     return(
       <section className={classnames}>
         <div className="content">
