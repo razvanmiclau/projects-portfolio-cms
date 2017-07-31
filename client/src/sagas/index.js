@@ -10,6 +10,7 @@ import {
   watchGetSection,
   watchDeleteSection,
   watchAddSection,
+  watchUpdateSection,
   watchUploadImageSection
 } from './sections';
 import {
@@ -27,6 +28,7 @@ export default function* rootSaga () {
     watchGetSection(),
     watchDeleteSection(),
     watchAddSection(),
+    watchUpdateSection(),
     watchLogin()
   ];
 }

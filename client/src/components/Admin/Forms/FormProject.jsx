@@ -64,4 +64,6 @@ class Form extends PureComponent {
   }
 }
 
-export default reduxForm({ form: 'project' })(Form);
+export default reduxForm({
+  form: 'project'
+})(Form);

@@ -11,6 +11,9 @@ DELETE_SECTION_FAIL,
 ADD_SECTION,
 ADD_SECTION_SUCCESS,
 ADD_SECTION_FAIL,
+UPDATE_SECTION,
+UPDATE_SECTION_SUCCESS,
+UPDATE_SECTION_FAIL,
 UPLOAD_IMAGE,
 UPLOAD_IMAGE_SUCCESS,
 UPLOAD_IMAGE_FAIL,
@@ -93,6 +96,25 @@ const addSectionFail = () => {
   }
 }
 
+const updateSection = () => {
+  return {
+    type: UPDATE_SECTION,
+  }
+}
+
+const updateSectionSuccess = (section) => {
+  return {
+    type: UPDATE_SECTION_SUCCESS,
+    section
+  }
+}
+
+const updateSectionFail = () => {
+  return {
+    type: UPDATE_SECTION_FAIL
+  }
+}
+
 const uploadImage = () => {
   return {
     type: UPLOAD_IMAGE
@@ -125,6 +147,9 @@ export {
   addSection,
   addSectionSuccess,
   addSectionFail,
+  updateSection,
+  updateSectionSuccess,
+  updateSectionFail,
   uploadImage,
   uploadImageSuccess,
   uploadImageFail,

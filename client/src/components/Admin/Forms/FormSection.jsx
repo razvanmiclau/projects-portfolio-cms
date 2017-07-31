@@ -5,7 +5,7 @@ import { Field, reduxForm } from 'redux-form/immutable';
 class FormSection extends PureComponent {
 
   render() {
-    const { image, uploadImage } = this.props;
+    const { image, uploadImage, initialValues } = this.props;
 
     return (
       <form onSubmit={this.props.handleSubmit}>
@@ -35,7 +35,7 @@ class FormSection extends PureComponent {
             type="text"
             rows="3"
             component="textarea"
-            placeholder="Section Description" />
+          placeholder="Section Description" />
         </div>
 
         <div className="field">
@@ -43,7 +43,7 @@ class FormSection extends PureComponent {
           <div className="select-wrapper">
             <Field
               name="section_type"
-              component="select">
+            component="select">
               <option>- Select Section Type -</option>
               <option value="banner">Banner</option>
               <option value="spotlight">Spotlight</option>
@@ -57,7 +57,7 @@ class FormSection extends PureComponent {
           <div className="select-wrapper">
             <Field
               name="section_style"
-              component="select">
+            component="select">
               <option>- Select Section Style -</option>
               <option value="style1">Style 1</option>
               <option value="style2">Style 2</option>
@@ -74,7 +74,7 @@ class FormSection extends PureComponent {
           <div className="select-wrapper">
             <Field
               name="section_color"
-              component="select">
+            component="select">
               <option>- Select Section Color -</option>
               <option value="invert">Invert</option>
               <option value="color1">Color 1</option>
@@ -93,7 +93,7 @@ class FormSection extends PureComponent {
           <div className="select-wrapper">
             <Field
               name="section_orientation"
-              component="select">
+            component="select">
               <option>- Select Section Orientation -</option>
               <option value="orient-left">Left</option>
               <option value="orient-right">Right</option>
@@ -106,7 +106,7 @@ class FormSection extends PureComponent {
           <div className="select-wrapper">
             <Field
               name="section_content_alignment"
-              component="select">
+            component="select">
               <option>- Select Content Alignment -</option>
               <option value="content-align-left">Left</option>
               <option value="content-align-center">Center</option>
@@ -120,7 +120,7 @@ class FormSection extends PureComponent {
           <div className="select-wrapper">
             <Field
               name="section_image_alignment"
-              component="select">
+            component="select">
               <option>- Select Content Alignment -</option>
               <option value="image-position-left">Left</option>
               <option value="image-position-center">Center</option>
@@ -138,7 +138,7 @@ class FormSection extends PureComponent {
           <div className="select-wrapper">
             <Field
               name="section_image_animation"
-              component="select">
+            component="select">
               <option>- Select Image Animation -</option>
               <option value="onload-image-fade-in">OnLoad fade In</option>
               <option value="onscroll-image-fade-in">OnScroll fade In</option>
@@ -152,7 +152,7 @@ class FormSection extends PureComponent {
           <div className="select-wrapper">
             <Field
               name="section_content_animation"
-              component="select">
+            component="select">
               <option>- Select Content Animation -</option>
               <option value="onload-content-fade-in">OnLoad fade In</option>
               <option value="onload-content-fade-up">OnLoad fade up</option>
@@ -173,7 +173,5 @@ class FormSection extends PureComponent {
     )
   }
 }
-
-
 
 export default reduxForm({ form: 'section' })(FormSection);

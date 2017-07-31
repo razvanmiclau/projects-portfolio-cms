@@ -12,7 +12,7 @@ import Immutable from 'immutable';
 import FormSection from './Forms/FormSection';
 const fileUploader = filestack.init("At2eWk3cXTt2E43Ypq9iXz");
 
-class AddSectionContainer extends Component {
+class EditSectionContainer extends Component {
   constructor(props) {
     super(props);
     this.submit = this.submit.bind(this);
@@ -21,7 +21,7 @@ class AddSectionContainer extends Component {
 
   submit(e) {
     e.preventDefault();
-    this.props.sectionActions.addSection();
+    this.props.sectionActions.updateSection();
   }
 
   uploadImage(e) {
@@ -30,8 +30,7 @@ class AddSectionContainer extends Component {
   }
 
   render() {
-    const { image } = this.props;
-
+    const { image, selectedSection } = this.props;
     return(
       <div>
         <h1>Content & Layout</h1>
@@ -39,7 +38,7 @@ class AddSectionContainer extends Component {
           handleSubmit={this.submit}
           image={image}
           uploadImage={this.uploadImage}
-        />
+          initialValues={selectedSection.length !== 0 ? selectedSection : null} />
       </div>
     )
   }
@@ -48,6 +47,7 @@ class AddSectionContainer extends Component {
 function mapStateToProps(state) {
   return {
     image: state.getIn(['sections', 'url'], ''),
+    selectedSection: state.getIn(['sections', 'selectedSection'], '')
   }
 }
 
@@ -57,4 +57,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddSectionContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(EditSectionContainer);

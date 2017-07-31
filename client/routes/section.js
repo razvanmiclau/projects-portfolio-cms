@@ -35,6 +35,18 @@ const addSection = (req, res) => {
   });
 };
 
+// Update a Section
+const updateSection = (req, res) => {
+  const { id } = req.params;
+  let updatedSection = Object.assign(new Section(), req.body);
+  Section.findOneAndUpdate({_id: id}, updatedSection, (err, updatedData) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json({ message: 'Section Updated'});
+  });
+};
+
 // Delete a Section
 const deleteSection = (req, res) => {
   Section.remove({_id: req.params.id }, err => {
@@ -44,17 +56,5 @@ const deleteSection = (req, res) => {
     res.json({ message: 'Section successfully removed'})
   });
 };
-
-// Update a Section
-const updateSection = (req, res) => {
-  const { id } = req.params;
-  let updatedSection = Object.assign(new Section(), req.body);
-  Section.findOneAndUpdate(id, updatedSection, (err, updatedData) => {
-    if (err) {
-      res.send(err);
-    }
-    res.json(updatedData);
-  });
-}
 
 export { getSections, getSection, addSection, deleteSection, updateSection };

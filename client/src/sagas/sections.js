@@ -6,6 +6,7 @@ import {
   GET_SECTION,
   DELETE_SECTION,
   ADD_SECTION,
+  UPDATE_SECTION,
   UPLOAD_IMAGE
 } from '../constants/sections';
 
@@ -18,6 +19,8 @@ import {
   deleteSectionFail,
   addSectionSuccess,
   addSectionFail,
+  updateSectionSuccess,
+  updateSectionFail,
   uploadImageSuccess,
   uploadImageFail
 } from '../actions/sections';
@@ -31,10 +34,7 @@ const selectedSections = (state) => {
   return state.getIn(['sections', 'list']).toJS();
 }
 
-const selectedSection = (state) => {
-  return state.getIn(['selectedSection']).toJS();
-}
-
+// this actually points to the latest uploaded image.
 const selectedImage = (state) => {
   return state.getIn(['sections', 'url'], '');
 }
@@ -88,6 +88,21 @@ const addSectionToServer = (section) => {
   });
 }
 
+const updateSectionToServer = (section) => {
+  return fetch(`/admin/sections/${section._id}`, {
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      'x-access-token': localStorage.getItem('token')
+    }),
+    method: 'PUT',
+    body: JSON.stringify(section)
+  }).
+  then(res => {
+    if (res.status === 200) return res.json();
+    throw res;
+  });
+}
+
 const uploadImagePromise = () => {
   return new Promise((resolve, reject) => {
     fileUploader.pick({
@@ -106,7 +121,7 @@ const uploadImagePromise = () => {
     })
     .then(result => {
       const imageUrl = result.filesUploaded[0].url;
-      console.log(JSON.stringify(imageUrl));
+      //console.log(JSON.stringify(imageUrl));
       resolve(imageUrl)
     })
   });
@@ -128,6 +143,7 @@ function* getSection (action) {
   try {
     const section = yield call(fetchSection, id);
     yield put(getSectionSuccess(section));
+    yield put(push('admin/sections/edit'));
   } catch (err) {
     yield put(getSectionFail());
   }
@@ -161,6 +177,21 @@ function* addSection () {
   }
 }
 
+function* updateSection () {
+  const section = yield select(sectionForm);
+  const section_pic = yield select(selectedImage); // => this points to the old image upload.
+  const updatedSection = Object.assign({}, {section_pic}, section.values);
+
+  try {
+    yield call(updateSectionToServer, updatedSection)
+    yield put(updateSectionSuccess());
+    yield put(push('admin/sections'));
+  } catch (err) {
+    yield put(updateSectionFail());
+    localStorage.removeItem('token');
+  }
+}
+
 function* uploadImage () {
   try {
     const url = yield call(uploadImagePromise);
@@ -187,6 +218,10 @@ function* watchAddSection () {
   yield takeLatest(ADD_SECTION, addSection);
 }
 
+function* watchUpdateSection () {
+  yield takeLatest(UPDATE_SECTION, updateSection);
+}
+
 function* watchUploadImageSection () {
   yield takeLatest(UPLOAD_IMAGE, uploadImage);
 }
@@ -196,5 +231,6 @@ export {
   watchGetSection,
   watchDeleteSection,
   watchAddSection,
+  watchUpdateSection,
   watchUploadImageSection
 }

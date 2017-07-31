@@ -8,6 +8,8 @@ import {
   DELETE_SECTION_FAIL,
   ADD_SECTION_SUCCESS,
   ADD_SECTION_FAIL,
+  UPDATE_SECTION_SUCCESS,
+  UPDATE_SECTION_FAIL,
   UPLOAD_IMAGE_SUCCESS,
   UPLOAD_IMAGE_FAIL,
 } from '../constants/sections';
@@ -34,6 +36,8 @@ export default (state = initialState, action) => {
 
     case ADD_SECTION_SUCCESS:
     case ADD_SECTION_FAIL:
+    case UPDATE_SECTION_SUCCESS:
+    case UPDATE_SECTION_FAIL:
     case UPLOAD_IMAGE_FAIL:
     case DELETE_SECTION_FAIL:
     case GET_SECTION_FAIL:
