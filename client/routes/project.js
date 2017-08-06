@@ -36,6 +36,14 @@ const postProject = (req, res) => {
   });
 };
 
+const updateProject = (req, res) => {
+  let project = Object.assign(new Project, req.body);
+  Project.findOneAndUpdate({_id: req.params.id}, project, (err, newData) => {
+    if (err) { res.send(err) };
+    res.json({ message: 'Project Updated' })
+  });
+};
+
 // Delete a Project
 const deleteProject = (req, res) => {
   Project.remove({_id: req.params.id }, err => {
@@ -46,4 +54,4 @@ const deleteProject = (req, res) => {
   });
 };
 
-export { getProjects, getProject, postProject, deleteProject };
+export { getProjects, getProject, postProject, deleteProject, updateProject };

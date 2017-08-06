@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router';
 import { Field, reduxForm } from 'redux-form/immutable';
 
-class Form extends PureComponent {
+class FormProject extends PureComponent {
   render() {
-    const { image, uploadImage } = this.props;
+    const { image, uploadImage, initialValues } = this.props;
 
     return (
       <form onSubmit={this.props.handleSubmit}>
@@ -64,6 +64,4 @@ class Form extends PureComponent {
   }
 }
 
-export default reduxForm({
-  form: 'project'
-})(Form);
+export default reduxForm( {form: 'project'} )(FormProject);

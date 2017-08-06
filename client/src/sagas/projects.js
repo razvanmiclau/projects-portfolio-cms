@@ -1,20 +1,26 @@
 import { takeLatest, delay } from 'redux-saga';
 import { put, call, select } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
-
 import {
   GET_PROJECTS,
+  GET_PROJECT,
   DELETE_PROJECT,
   ADD_PROJECT,
+  UPDATE_PROJECT,
   UPLOAD_IMAGE
 } from '../constants/projects';
+
 import {
   getProjectsSuccess,
   getProjectsFail,
+  getProjectSuccess,
+  getProjectFail,
   deleteProjectSuccess,
   deleteProjectFail,
   addProjectSuccess,
   addProjectFail,
+  updateProjectSuccess,
+  updateProjectFail,
   uploadImageSuccess,
   uploadImageFail
 } from '../actions/projects';
@@ -44,6 +50,16 @@ const fetchProjects = () => {
   .then(res => res.json())
 }
 
+const fetchProject = (id) => {
+  return fetch(`/admin/projects/${id}`, {
+    headers: new Headers({
+      'Content-Type': 'application/json',
+    }),
+    method: 'GET',
+  })
+  .then(res => res.json())
+}
+
 const deleteProjectOnServer = (id) => {
   return fetch(`/admin/projects/${id}`, {
     headers: new Headers({
@@ -64,6 +80,21 @@ const addProjectToServer = (project) => {
     body: JSON.stringify(project)
   })
   .then(res => res.json())
+}
+
+const updateProjectToServer = (project) => {
+  return fetch(`/admin/projects/${project._id}`, {
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      'x-access-token': localStorage.getItem('token')
+    }),
+    method: 'PUT',
+    body: JSON.stringify(project)
+  }).
+  then(res => {
+    if (res.status === 200) return res.json();
+    throw res;
+  });
 }
 
 const uploadImagePromise = () => {
@@ -100,6 +131,17 @@ function* getProjects () {
   }
 }
 
+function* getProject (action) {
+  const { id } = action;
+  try {
+    const project = yield call(fetchProject, id);
+    yield put(getProjectSuccess(project));
+    yield put(push('admin/projects/edit'));
+  } catch (err) {
+    yield put(getProjectFail());
+  }
+}
+
 function* deleteProject (action) {
   const { id } = action;
   const projects = yield select(selectedProjects);
@@ -128,6 +170,21 @@ function* addProject () {
   }
 }
 
+function* updateProject () {
+  const project = yield select(projectForm);
+  const project_pic = yield select(selectedImage);
+  const updatedProject = Object.assign({}, {project_pic}, project.values);
+
+  try {
+    yield call(updateProjectToServer, updatedProject)
+    yield put(updateProjectSuccess());
+    yield put(push('admin/projects'));
+  } catch (err) {
+    yield put(updateProjectFail());
+    localStorage.removeItem('token');
+  }
+}
+
 function* uploadImage () {
   try {
     const url = yield call(uploadImagePromise);
@@ -142,6 +199,10 @@ function* watchGetProjects () {
   yield takeLatest(GET_PROJECTS, getProjects);
 }
 
+function* watchGetProject () {
+  yield takeLatest(GET_PROJECT, getProject);
+}
+
 function* watchDeleteProject () {
   yield takeLatest(DELETE_PROJECT, deleteProject);
 }
@@ -151,7 +212,7 @@ function* watchAddProject () {
 }
 
 function* watchUpdateProject () {
-  yield takeLatest(EDIT_PROJECT, updatedProject);
+  yield takeLatest(UPDATE_PROJECT, updateProject);
 }
 
 function* watchUploadImage () {
@@ -160,7 +221,9 @@ function* watchUploadImage () {
 
 export {
   watchGetProjects,
+  watchGetProject,
   watchDeleteProject,
   watchAddProject,
+  watchUpdateProject,
   watchUploadImage
 }

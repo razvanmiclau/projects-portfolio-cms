@@ -7,7 +7,7 @@ var morgan = require('morgan');
 import Project from './models/project';
 import Section from './models/section';
 // Routes
-import { getProjects, getProject, postProject, deleteProject } from './client/routes/project';
+import { getProjects, getProject, postProject, deleteProject, updateProject } from './client/routes/project';
 import { getSections, getSection, addSection, deleteSection, updateSection } from './client/routes/section';
 // Authentication
 import { signup, login, checkAuth } from './client/routes/user';
@@ -55,6 +55,7 @@ app.route('/admin/projects')
    .get(getProjects);
 app.route('/admin/projects/:id')
    .get(getProject)
+   .put(checkAuth, updateProject)
    .delete(deleteProject);
 
 app.route('/admin/sections')

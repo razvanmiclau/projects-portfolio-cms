@@ -13,6 +13,7 @@ class ProjectsContainer extends Component {
   constructor(props) {
     super(props);
     this.deleteProject = this.deleteProject.bind(this);
+    this.editProject = this.editProject.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +26,10 @@ class ProjectsContainer extends Component {
 
   deleteProject(id) {
     this.props.projectActions.deleteProject(id);
+  }
+
+  editProject(id) {
+    this.props.projectActions.getProject(id);
   }
 
   render() {
@@ -53,6 +58,7 @@ class ProjectsContainer extends Component {
           <ProjectList
             projects={projects}
             deleteProject={this.deleteProject}
+            editProject={this.editProject}
           />
         </div>
 

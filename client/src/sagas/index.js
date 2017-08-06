@@ -1,8 +1,10 @@
 // Import saga watchers
 import {
   watchGetProjects,
+  watchGetProject,
   watchDeleteProject,
   watchAddProject,
+  watchUpdateProject,
   watchUploadImage,
 } from './projects';
 import {
@@ -20,8 +22,10 @@ import {
 export default function* rootSaga () {
   yield [
     watchGetProjects(),
+    watchGetProject(),
     watchDeleteProject(),
     watchAddProject(),
+    watchUpdateProject(),
     watchUploadImage(),
     watchUploadImageSection(),
     watchGetSections(),

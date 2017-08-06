@@ -14,7 +14,7 @@ export default class ProjectList extends PureComponent {
   }
 
   render() {
-    const { projects, deleteProject } = this.props;
+    const { projects, deleteProject, editProject } = this.props;
 
     return (
       <div>
@@ -27,6 +27,7 @@ export default class ProjectList extends PureComponent {
                 key={project._id}
                 index={index}
                 deleteProject={deleteProject}
+                editProject={editProject}
               />
             )
           })

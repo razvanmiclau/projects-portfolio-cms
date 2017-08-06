@@ -19,7 +19,9 @@ import SectionsContainer from './components/Admin/Pages/SectionsPage';
 
 import AddProjectContainer from './components/Admin/AddProject';
 import AddSectionContainer from './components/Admin/AddSection';
+
 import EditSectionContainer from './components/Admin/EditSection';
+import EditProjectContainer from './components/Admin/EditProject';
 
 import { syncHistoryWithStore, push } from 'react-router-redux';
 
@@ -60,6 +62,7 @@ const routes = (
         <IndexRoute component={AdminContainer} />
         <Route path="projects" component={ProjectsContainer}>
           <Route path="add" component={AddProjectContainer} />
+          <Route path="edit" component={EditProjectContainer} />
         </Route>
         <Route path="sections" component={SectionsContainer}>
           <Route path="add" component={AddSectionContainer} />

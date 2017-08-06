@@ -2,10 +2,14 @@ import Immutable from 'immutable';
 import {
   GET_PROJECTS_SUCCESS,
   GET_PROJECTS_FAIL,
+  GET_PROJECT_SUCCESS,
+  GET_PROJECT_FAIL,
   DELETE_PROJECT_SUCCESS,
   DELETE_PROJECT_FAIL,
   ADD_PROJECT_SUCCESS,
   ADD_PROJECT_FAIL,
+  UPDATE_PROJECT_SUCCESS,
+  UPDATE_PROJECT_FAIL,
   UPLOAD_IMAGE_SUCCESS,
   UPLOAD_IMAGE_FAIL,
   SEARCH_QUERY,
@@ -32,14 +36,18 @@ export default (state = initialState, action) => {
       return state.merge({ searchBar: action.keyword });
     }
 
+    case GET_PROJECT_SUCCESS:
     case DISPLAY_PROJECT_DETAILS: {
       return state.merge({ selectedProject: action.project });
     }
 
     case ADD_PROJECT_SUCCESS:
     case ADD_PROJECT_FAIL:
+    case UPDATE_PROJECT_SUCCESS:
+    case UPDATE_PROJECT_FAIL:
     case UPLOAD_IMAGE_FAIL:
     case DELETE_PROJECT_FAIL:
+    case GET_PROJECT_FAIL:
     case GET_PROJECTS_FAIL: {
       return state.clear();
     }
