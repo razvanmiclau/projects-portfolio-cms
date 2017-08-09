@@ -14,6 +14,10 @@ var sectionSchema = new mongoose.Schema(
     section_image_animation: String,
     section_content_animation: String,
     section_color: String,
+    added_date: {
+      type: Date,
+      default: Date.now
+    }
   }
 );
 

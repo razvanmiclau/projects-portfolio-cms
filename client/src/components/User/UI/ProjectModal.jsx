@@ -11,7 +11,7 @@ export default class ProjectModal extends PureComponent {
             <img src={project_pic} className="img-responsive img-big" />
             <div className="modal-body">
               <header>
-                <h3>{project_name}</h3>
+                <h1>{project_name}</h1>
                 <a href={project_link} className="button special small">View Project</a>
               </header>
               <p className="align-left major">{project_desc}</p> <hr/>

@@ -15,7 +15,7 @@ class AdminContainer extends PureComponent {
           <div className="content">
             <h1 className="text-center">Dashboard</h1>
             <div className="row">
-              <div className="col-sm-6 col-md-4">
+              <div className="col-sm-6 col-md-6">
                 <div className="thumbnail">
                   <div className="caption text-center">
                     <h3>Projects</h3>
@@ -25,7 +25,7 @@ class AdminContainer extends PureComponent {
                   </div>
                 </div>
               </div>
-              <div className="col-sm-6 col-md-4">
+              <div className="col-sm-6 col-md-6">
                 <div className="thumbnail">
                   <div className="caption text-center">
                     <h3>Sections</h3>

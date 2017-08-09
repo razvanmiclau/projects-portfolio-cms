@@ -70,20 +70,3 @@ function mapDispatchToProps (dispatch) {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Section);
-
-{/* <Project
-  title="Classroom Clicker Ruby"
-  description="This is a classroom clicker web application built in Ruby-on-Rails framework."
-  image="https://source.unsplash.com/category/technology/1600x900" />
-<Project
-  title="Logo Design"
-  description="This is a Logo Design built in Photoshop."
-  image="https://source.unsplash.com/category/food/1600x900" />
-<Project
-  title="Battleships Game"
-  description="This is a battleships application built in Java."
-  image="https://source.unsplash.com/category/nature/1600x900" />
-<Project
-  title="Android App"
-  description="This is a Android Mobile App built in Android Studio."
-  image="https://source.unsplash.com/category/buildings/1600x900" /> */}

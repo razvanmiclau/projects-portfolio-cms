@@ -50,7 +50,7 @@ class SectionsContainer extends Component {
           </div>
         </section>
 
-        <div>
+        <div id="wrapper">
           {
             sections.map(section => {
 

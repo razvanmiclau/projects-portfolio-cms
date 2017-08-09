@@ -3,6 +3,7 @@ import Section from '../../models/section';
 // Get all most recent Sections
 const getSections = (req, res) => {
   Section.find(null, null,
+    { sort: { added_date : 1} },
     (err, sections) => {
       if (err) {
         res.send(err);

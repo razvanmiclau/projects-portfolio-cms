@@ -25,13 +25,25 @@ class HomeContainer extends PureComponent {
 
   render() {
     const { sections } = this.props;
+    const getProjectSectionID = () => {
+      const sectionID = this.props.sections.length;
+      let id = '';
+        switch (sectionID) {
+          case 0: { id = 'first'; break; }
+          case 1: { id = 'second'; break; }
+          case 2: { id = 'third'; break; }
+          case 3: { id = 'fourth'; break; }
+        }
+      return id;
+    }
 
     return(
-      <div>
+      <div id="wrapper" className="divider">
         <Banner />
 
         {
           sections.map((section, index) => {
+
             const classnames = [
             section.section_type,
             section.section_style,
@@ -43,20 +55,19 @@ class HomeContainer extends PureComponent {
             section.section_color,
             ].join(" ");
 
-            if (index === 0) {
-              index = "first"
-            } else if (index === 1) {
-              index = "second"
-            } else if (index === 2) {
-              index = "third"
+            switch (index) {
+              case 0: { index = "first"; break; }
+              case 1: { index = "second"; break; }
+              case 2: { index = "third"; break; }
+              case 3: { index = "fourth"; break; }
             }
 
-              return <SectionUI index={index} {...section} key={section._id} classnames={classnames} />
+            return <SectionUI index={index} {...section} key={section._id} classnames={classnames} />
           })
         }
 
-        <Section id="second" type="projects" title="Projects" textContent="This is my list of projects. I developed these applications during my time at university."
-          classnames="wrapper style1 align-center" />
+        <Section id={getProjectSectionID()} type="projects" title="Projects" textContent="This is my list of projects. I developed these applications during my time at university."
+        classnames="wrapper style1 align-center" />
 
         <Footer />
       </div>

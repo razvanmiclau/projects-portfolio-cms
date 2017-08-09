@@ -8459,6 +8459,10 @@
 	border:none;
 }
 
+.pre-wrap {
+	white-space: pre-wrap;
+}
+
 .navbar-brand {
 	font-size: 1.1rem;
 	color: floralwhite;

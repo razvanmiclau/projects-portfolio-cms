@@ -77,13 +77,13 @@ class FormSection extends PureComponent {
             component="select">
               <option>- Select Section Color -</option>
               <option value="invert">Invert</option>
-              <option value="color1">Color 1</option>
-              <option value="color2">Color 2</option>
-              <option value="color3">Color 3</option>
-              <option value="color4">Color 4</option>
-              <option value="color5">Color 5</option>
-              <option value="color6">Color 6</option>
-              <option value="color7">Color 7</option>
+              <option value="invert color1">Color 1</option>
+              <option value="invert color2">Color 2</option>
+              <option value="invert color3">Color 3</option>
+              <option value="invert color4">Color 4</option>
+              <option value="invert color5">Color 5</option>
+              <option value="invert color6">Color 6</option>
+              <option value="invert color7">Color 7</option>
             </Field>
           </div>
         </div>

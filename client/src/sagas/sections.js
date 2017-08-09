@@ -107,11 +107,11 @@ const uploadImagePromise = () => {
   return new Promise((resolve, reject) => {
     fileUploader.pick({
       accept: ['image/*'],
+      storeTo: { location: 's3' },
       transformOptions: {
         maxDimensions: [600,400],
         transformations: { crop: true, sepia: true }
       },
-      preferLinkOverStore: true,
       onFileUploadProgress: (file, progressEvent) => {
         console.log(JSON.stringify(progressEvent))
       },
